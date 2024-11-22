@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Interface</title>
+    <link rel="stylesheet" href="chatgpt.css">
+</head>
+<body>
+
+   
+    <header class="navbar">
+        <div class="logo">ChatGPT</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Support</a></li>
+            </ul>
+        </nav>
+        <div class="user-menu">
+            <a href="#">Profile</a>
+            <a href="#">Logout</a>
+        </div>
+    </header>
+
+
+    <div class="chat-display">
+        <div class="chat-display-inside" id="chatWindow">
+            
+        </div>
+
+        <div class="message-input">
+            <input type="text" id="userInput" placeholder="Type your message..." />
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 ChatGPT - All rights reserved.</p>
+    </footer>
+
+    <script>
+        
+        const chatWindow = document.getElementById('chatWindow');
+const userInput = document.getElementById('userInput');
+const sendButton = document.getElementById('sendButton');
+
+
+function sendMessage() {
+    const message = userInput.value.trim();
+    
+    if (message) {
+        
+        const userMessage = document.createElement('div');
+        userMessage.textContent = message;
+        userMessage.classList.add('message', 'user');       //--------> user input
+        chatWindow.appendChild(userMessage);
+
+        userInput.value = ''; //----->clear the input
+
+        
+
+       
+        const botResponse = document.createElement('div');
+        botResponse.textContent = 'Welcome'; 
+        botResponse.classList.add('message', 'bot');        //---------->response "welcome"
+        chatWindow.appendChild(botResponse);
+
+       
+        chatWindow.scrollTop = chatWindow.scrollHeight;     //---------------> scroll
+    }
+}
+
+sendButton.addEventListener('click', sendMessage); //------> while click send the function will call
+
+userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();              //--------> while pressing enter button this event will be display
+            }
+        });
+
+    </script>
+
+
+</body>
+</html>
